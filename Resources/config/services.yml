@@ -1,0 +1,28 @@
+parameters:
+    ez.io_legacy_dispatcher.configuration_mapper.class: Ez\Bundles\IOLegacyDispatcherBundle\LegacyMapper\Configuration
+    ezpublish_legacy.dfs.backend.dfs.class: eZDFSFileHandlerDFSBackend
+    ezpublish_legacy.dfs.backend.dispatcher.registry.class: eZDFSFileHandlerDFSRegistry
+    ezpublish_legacy.dfs.backend.dispatcher.class: eZDFSFileHandlerDFSDispatcher
+    ezpublish_legacy.dfs.backend.dispatcher.handlerMap: {}
+
+services:
+    ezpublish_legacy.configuration_mapper:
+        class: %ez.io_legacy_dispatcher.configuration_mapper.class%
+        calls:
+            - [setContainer, [@service_container]]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    ezpublish_legacy.dfs.backend.dispatcher:
+        class: %ezpublish_legacy.dfs.backend.dispatcher.class%
+        arguments:
+            - @ezpublish_legacy.dfs.backend.dispatcher.registry
+
+    ezpublish_legacy.dfs.backend.dispatcher.registry:
+        class: %ezpublish_legacy.dfs.backend.dispatcher.registry.class%
+        arguments:
+            - @ezpublish_legacy.dfs.backend.dfs
+            - %ezpublish_legacy.dfs.backend.dispatcher.handlerMap%
+
+    ezpublish_legacy.dfs.backend.dfs:
+        class: %ezpublish_legacy.dfs.backend.dfs.class%

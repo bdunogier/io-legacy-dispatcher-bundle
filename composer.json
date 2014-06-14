@@ -1,0 +1,21 @@
+{
+    "name": "ezsystems/io-legacy-dispatcher",
+    "description": "Legacy bundle for the ezdfs-fsbackend-dispatcher extension",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Bertrand Dunogier",
+            "email": "bd@ez.no"
+        },
+        {
+            "name": "eZ Systems",
+            "url": "http://ez.no"
+        }
+    ],
+    "require": {
+        "ezsystems/ezdfs-fsbackend-dispatcher": "*"
+    },
+    "autoload": {
+        "psr-4": {"Ez\\Bundles\\IOLegacyDispatcherBundle": ""}
+    }
+}
