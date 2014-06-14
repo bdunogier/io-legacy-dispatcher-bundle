@@ -83,6 +83,5 @@ class Configuration extends ContainerAware implements EventSubscriberInterface
     public function onPostBuildKernel( PostBuildKernelEvent $event )
     {
         eZDFSFileHandler::resetDBBackend();
-        eZDFSFileHandlerBackendFactory::reset();
     }
 }
